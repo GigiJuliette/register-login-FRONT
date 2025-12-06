@@ -22,3 +22,28 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0);
   }
 }
+
+.uncorrectPassword {
+  animation: no 0.3s ease both;
+  border: 1px solid red;
+}
+@keyframes no {
+  from {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-10px);
+  }
+  75% {
+    transform: translateX(10px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.toggleHide,
+.authStatus {
+  padding: 0.25rem 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+}

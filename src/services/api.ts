@@ -9,8 +9,11 @@ const handleResponse = async (response: Response) => {
 };
 
 export const userService = {
-  register: async (userData: { nickname: string; email: string }) => {
-    console.log("user", userData);
+  register: async (userData: {
+    nickname: string;
+    email: string;
+    password: string;
+  }) => {
     const response = await fetch(`${API_URL}register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
