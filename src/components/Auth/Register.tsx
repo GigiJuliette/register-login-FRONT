@@ -14,11 +14,8 @@ const Register = () => {
     password: "",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const [seePassword, setSeePassword] = useState(false);
-
   const [uncorrect, setUncorrect] = useState(false);
-
   const [formStatus, setFormStatus] = useState("welcome");
 
   const createUser = async () => {

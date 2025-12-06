@@ -23,10 +23,12 @@
   }
 }
 
-.uncorrectPassword {
+.uncorrectPassword,
+.uncorrectLoggin {
   animation: no 0.3s ease both;
-  border: 1px solid red;
+  border: 1px solid red !important;
 }
+
 @keyframes no {
   from {
     transform: translateX(0);
