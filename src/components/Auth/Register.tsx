@@ -1,4 +1,3 @@
-import "./Register.css";
 import { userService } from "../../services/api";
 import { useState } from "react";
 
@@ -16,15 +15,17 @@ const Register = () => {
 
   return (
     <>
-      <form>
+      <form className="authForm">
         <input
           type="text"
+          placeholder="Nickname"
           onChange={(e) => {
             setUserData({ ...userData, nickname: e.target.value });
           }}
         />
         <input
           type="email"
+          placeholder="Email"
           onChange={(e) => {
             setUserData({ ...userData, email: e.target.value });
           }}

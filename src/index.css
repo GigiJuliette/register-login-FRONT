@@ -1,0 +1,41 @@
+body {
+  color: canvas;
+  font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue",
+    Helvetica, Arial, sans-serif, system-ui;
+}
+*,
+*:after,
+*:before {
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+input,
+button {
+  border: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 999px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+input:focus,
+input:active,
+input:focus-visible {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+button[type="submit"]:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid transparent;
+}

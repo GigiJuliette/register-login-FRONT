@@ -1,10 +1,12 @@
 import "./App.css";
-import Register from "./components/Register/Register";
+import Background from "./components/Background/Background";
+import Auth from "./components/Auth/Auth";
 
 function App() {
   return (
     <>
-      <Register />
+      <Background />
+      <Auth />
     </>
   );
 }
