@@ -52,41 +52,46 @@ const Register = ({ setActiveTab }: RegisterProps) => {
   return (
     <>
       <form className="authForm registerForm">
-        <input
-          type="text"
-          placeholder="Nickname"
-          value={userData.nickname}
-          onChange={(e) => {
-            setUserData({ ...userData, nickname: e.target.value });
-          }}
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={userData.email}
-          onChange={(e) => {
-            setUserData({ ...userData, email: e.target.value });
-          }}
-        />
-        <input
-          type={seePassword ? "text" : "password"}
-          placeholder="Password"
-          value={userData.password}
-          onChange={(e) => {
-            setUserData({ ...userData, password: e.target.value });
-          }}
-        />
-
-        <input
-          type={seePassword ? "text" : "password"}
-          placeholder="Confirm password"
-          value={confirmPassword}
-          className={uncorrect ? "uncorrectPassword loggin-psw" : "loggin-psw"}
-          onChange={(e) => {
-            setUncorrect(false);
-            setConfirmPassword(e.target.value);
-          }}
-        />
+        <div data-text="Nickname">
+          <input
+            type="text"
+            value={userData.nickname}
+            onChange={(e) => {
+              setUserData({ ...userData, nickname: e.target.value });
+            }}
+          />
+        </div>
+        <div data-text="Email">
+          <input
+            type="email"
+            value={userData.email}
+            onChange={(e) => {
+              setUserData({ ...userData, email: e.target.value });
+            }}
+          />
+        </div>
+        <div data-text="Password">
+          <input
+            type={seePassword ? "text" : "password"}
+            value={userData.password}
+            onChange={(e) => {
+              setUserData({ ...userData, password: e.target.value });
+            }}
+          />
+        </div>
+        <div data-text="Confirm password">
+          <input
+            type={seePassword ? "text" : "password"}
+            value={confirmPassword}
+            className={
+              uncorrect ? "uncorrectPassword loggin-psw" : "loggin-psw"
+            }
+            onChange={(e) => {
+              setUncorrect(false);
+              setConfirmPassword(e.target.value);
+            }}
+          />
+        </div>
         <button
           type="button"
           className="toggleHide"
@@ -94,7 +99,7 @@ const Register = ({ setActiveTab }: RegisterProps) => {
             setSeePassword((prev) => !prev);
           }}
         >
-          <em>{seePassword ? "hide" : "show"}</em>
+          <em>{seePassword ? "hide passwords" : "show passwords"}</em>
         </button>
         <button
           type="submit"

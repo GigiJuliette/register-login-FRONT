@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: 1r;
   grid-auto-rows: auto auto;
+  width: clamp(300px, 95%, 700px);
 }
 .authComponent-wrapper {
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -42,7 +43,7 @@
   font-size: 0.75rem;
 }
 .authBtn-wrapper {
-  width: 500px;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   button {
@@ -86,4 +87,43 @@
 }
 .registerForm {
   height: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr auto auto auto;
+}
+.registerForm > * {
+  position: relative;
+}
+.registerForm input {
+  width: 100%;
+  border-top: none;
+  border-left: none;
+}
+.registerForm div::before {
+  content: attr(data-text);
+  font-family: "Playwrite NO", cursive;
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  width: 100%;
+  pointer-events: none;
+  display: inline-block;
+}
+.registerForm button,
+.registerForm em {
+  place-self: center;
+  grid-column: span 2;
+}
+@media (max-width: 500px) {
+  .authForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    height: auto;
+  }
+  .registerForm div {
+    margin: 1rem 0;
+  }
 }
