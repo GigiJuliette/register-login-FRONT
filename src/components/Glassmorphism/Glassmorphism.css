@@ -1,0 +1,25 @@
+.glass-svg {
+  display: none;
+}
+
+.glass {
+  backdrop-filter: url(#displacementFilter);
+  position: relative;
+  border: none;
+  border: transparent;
+  box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.2);
+}
+.glass::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  box-shadow: 0 0 1px 0.8px hsl(0 0% 100% / 0.9) inset;
+  mask: linear-gradient(
+    calc(var(--pointer-angle, -35) * 1deg),
+    #ffffff80,
+    #ffffff30 30% 60%,
+    #fff
+  );
+}

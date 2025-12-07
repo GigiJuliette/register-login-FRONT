@@ -1,4 +1,3 @@
-import Background from "../../components/Background/Background";
 import "./UsersList.css";
 import { useEffect, useState } from "react";
 import { userService } from "../../services/api";
@@ -18,24 +17,24 @@ const UsersList = () => {
         const allUsers = await userService.getAllUsers();
         setUsers(allUsers);
       } catch (error: any) {
-        if (error.status === 401) {
+        if (error.status === 401 || error.status === 403) {
           navigate("/authentication");
         }
       }
     };
     fetchUsers();
-  }, []);
+  }, [navigate]);
 
   if (users.length === 0) {
     return <p>Loading</p>;
   }
   return (
     <>
-      <Background />
+      <h2>Users List</h2>
       <ul className="usersList-container">
         {users.map((u: UserInfos) => {
           return (
-            <li className="userList-items" key={u.email}>
+            <li className="userList-items glass" key={u.email}>
               <span>{u.nickname}</span>
               <em>{u.email}</em>
             </li>

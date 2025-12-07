@@ -8,19 +8,23 @@ const Auth = () => {
     <>
       <div className="authBtn-wrapper">
         <button
-          className={activeTab === "login" ? "activeBtn" : "authBtn"}
+          className={
+            activeTab === "login" ? "activeBtn glass" : "authBtn glass"
+          }
           onClick={() => setActiveTab("login")}
         >
           Login
         </button>
         <button
-          className={activeTab === "register" ? "activeBtn" : "authBtn"}
+          className={
+            activeTab === "register" ? "activeBtn glass" : "authBtn glass"
+          }
           onClick={() => setActiveTab("register")}
         >
           Register
         </button>
       </div>
-      <div className="authComponent-wrapper">
+      <div className="authComponent-wrapper glass">
         {activeTab === "login" ? <LogIn /> : <Register />}
       </div>
     </>

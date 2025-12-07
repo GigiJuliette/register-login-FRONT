@@ -2,8 +2,10 @@ const API_URL = "http://localhost:2711/";
 
 const handleResponse = async (response: Response) => {
   if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message);
+    const errorData = await response.json();
+    const error: any = new Error(errorData.message);
+    error.status = response.status;
+    throw error;
   }
   return response.json();
 };
