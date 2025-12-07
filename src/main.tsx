@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import Users from "./pages/Users/Users.tsx";
+import UsersList from "./pages/UsersList/UsersList.tsx";
 import Home from "./pages/Home/Home.tsx";
 import AuthPage from "./pages/AuthPage/AuthPage.tsx";
 const router = createBrowserRouter([
@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/users",
-        element: <Users />,
+        element: <UsersList />,
       },
       {
         path: "/home",

@@ -1,0 +1,29 @@
+.usersList-container {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  gap: 2rem;
+}
+.userList-items {
+  display: grid;
+  grid-template-columns: 250px;
+  grid-template-rows: auto auto;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 23px;
+  width: 100%;
+}
+.userList-items span {
+  border-bottom: 1px solid;
+  border-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.8) 0%,
+      transparent 100%
+    )
+    1;
+}
+.userList-items > * {
+  width: 100%;
+  line-height: 2.2rem;
+  display: inline-block;
+  text-align: center;
+}

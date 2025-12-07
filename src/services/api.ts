@@ -21,6 +21,7 @@ export const userService = {
     });
     return handleResponse(response);
   },
+
   getToken: async (userData: {
     nickname: string;
     email: string;
@@ -33,10 +34,17 @@ export const userService = {
     });
     return handleResponse(response);
   },
-  // verifyToken: async () => {
-  //   const response = await fetch(`${API_URL}verifyToken`, {
-  //     method: "GET",
-  //     headers: { Authorization: `Bearer ${localStorage.token}` },
-  //   });
-  // },
+
+  getAllUsers: async () => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("No token found");
+    }
+    const response = await fetch(`${API_URL}users`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return handleResponse(response);
+  },
 };
