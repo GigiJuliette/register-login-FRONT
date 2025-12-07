@@ -51,7 +51,7 @@ const Register = ({ setActiveTab }: RegisterProps) => {
 
   return (
     <>
-      <form className="authForm">
+      <form className="authForm registerForm">
         <input
           type="text"
           placeholder="Nickname"
@@ -81,7 +81,7 @@ const Register = ({ setActiveTab }: RegisterProps) => {
           type={seePassword ? "text" : "password"}
           placeholder="Confirm password"
           value={confirmPassword}
-          className={uncorrect ? "uncorrectPassword" : ""}
+          className={uncorrect ? "uncorrectPassword loggin-psw" : "loggin-psw"}
           onChange={(e) => {
             setUncorrect(false);
             setConfirmPassword(e.target.value);

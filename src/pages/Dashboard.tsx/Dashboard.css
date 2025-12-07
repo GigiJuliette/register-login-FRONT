@@ -105,3 +105,8 @@ section {
     opacity: 1;
   }
 }
+.ham-isOpen {
+  transform: translateX(110px);
+  transition-delay: 0.2s;
+  transition: 0.3s ease-in-out;
+}

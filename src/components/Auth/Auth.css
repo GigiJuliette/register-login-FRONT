@@ -1,8 +1,7 @@
-.authForm {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
+.auth-container {
+  display: grid;
+  grid-template-columns: 1r;
+  grid-auto-rows: auto auto;
 }
 .authComponent-wrapper {
   border: 1px solid rgba(255, 255, 255, 0.5);
@@ -10,18 +9,12 @@
   padding: 15px;
   margin-top: 10px;
 }
-.authBtn-wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  button {
-    border-radius: 50px;
-    margin: 5px;
-  }
-  .activeBtn {
-    background: rgba(0, 0, 0, 0.326);
-  }
+.authForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
 }
-
 .uncorrectPassword,
 .uncorrectLoggin {
   animation: no 0.3s ease both;
@@ -47,4 +40,50 @@
   padding: 0.25rem 0.75rem;
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.75rem;
+}
+.authBtn-wrapper {
+  width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  button {
+    border-radius: 50px;
+    margin: 5px;
+    transition-timing-function: cubic-bezier(0.64, -1.2, 0.83, 2.23);
+  }
+}
+.authBtn-wrapper:has(.loginBtn:hover),
+.authBtn-wrapper:has(.loginBtn.activeBtn) {
+  grid-template-columns: 1.5fr 1fr;
+}
+.authBtn-wrapper:has(.registerBtn:hover),
+.authBtn-wrapper:has(.registerBtn.activeBtn) {
+  grid-template-columns: 1fr 1.5fr;
+}
+.loginForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 200px;
+  h2 {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+  button[type="submit"] {
+    grid-area: 3 / 2 / 4 / 3;
+    align-self: center;
+    justify-self: end;
+  }
+}
+.loggin-psw {
+  position: relative;
+}
+.loggin-psw > input {
+  width: 100%;
+}
+.login-toggleHide {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.registerForm {
+  height: 200px;
 }

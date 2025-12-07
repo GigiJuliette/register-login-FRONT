@@ -15,7 +15,7 @@ const LogIn = () => {
     password: "",
   });
   const [seePassword, setSeePassword] = useState(false);
-  const [formStatus, setFormStatus] = useState("welcome");
+  const [formStatus, setFormStatus] = useState("Happy to see you again !");
   const [wrongValues, setWrongValues] = useState(false);
   const navigate = useNavigate();
 
@@ -44,7 +44,8 @@ const LogIn = () => {
 
   return (
     <>
-      <form className="authForm">
+      <form className="authForm loginForm">
+        <h2>{formStatus}</h2>
         <input
           type="email"
           placeholder="Email"
@@ -54,24 +55,26 @@ const LogIn = () => {
             setWrongValues(false);
           }}
         />
-        <input
-          type={seePassword ? "text" : "password"}
-          placeholder="Password"
-          value={userData.password}
-          onChange={(e) => {
-            setUserData({ ...userData, password: e.target.value });
-            setWrongValues(false);
-          }}
-        />
-        <button
-          type="button"
-          className="toggleHide"
-          onClick={() => {
-            setSeePassword((prev) => !prev);
-          }}
-        >
-          <em>{seePassword ? "hide" : "show"}</em>
-        </button>
+        <div className="loggin-psw">
+          <input
+            type={seePassword ? "text" : "password"}
+            placeholder="Password"
+            value={userData.password}
+            onChange={(e) => {
+              setUserData({ ...userData, password: e.target.value });
+              setWrongValues(false);
+            }}
+          />
+          <button
+            type="button"
+            className="toggleHide login-toggleHide"
+            onClick={() => {
+              setSeePassword((prev) => !prev);
+            }}
+          >
+            <em>{seePassword ? "hide" : "show"}</em>
+          </button>
+        </div>
         <button
           type="submit"
           className={wrongValues ? "uncorrectLoggin" : ""}
@@ -82,7 +85,6 @@ const LogIn = () => {
         >
           Log In
         </button>
-        <em className="authStatus">{formStatus}</em>
       </form>
     </>
   );

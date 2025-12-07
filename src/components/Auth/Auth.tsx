@@ -6,11 +6,13 @@ const Auth = () => {
   const [activeTab, setActiveTab] = useState("login");
   return (
     <>
-      <section>
+      <section className="auth-container">
         <div className="authBtn-wrapper">
           <button
             className={
-              activeTab === "login" ? "activeBtn glass" : "authBtn glass"
+              activeTab === "login"
+                ? "activeBtn authBtn glass loginBtn"
+                : "authBtn glass loginBtn"
             }
             onClick={() => setActiveTab("login")}
           >
@@ -18,7 +20,9 @@ const Auth = () => {
           </button>
           <button
             className={
-              activeTab === "register" ? "activeBtn glass" : "authBtn glass"
+              activeTab === "register"
+                ? "activeBtn authBtn glass registerBtn"
+                : "authBtn glass registerBtn"
             }
             onClick={() => setActiveTab("register")}
           >

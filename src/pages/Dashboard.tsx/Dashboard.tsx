@@ -17,7 +17,7 @@ const Dashboard = () => {
       <div className="burgerNav">
         <svg
           id="burgerToggle"
-          className={isOpen ? "ham open" : "ham"}
+          className={isOpen ? "ham open ham-isOpen" : "ham"}
           viewBox="0 0 100 100"
           width="80"
           onClick={toggleMenu}
