@@ -18,6 +18,7 @@ const LogIn = () => {
   const [formStatus, setFormStatus] = useState("welcome");
   const [wrongValues, setWrongValues] = useState(false);
   const navigate = useNavigate();
+
   const loginHandler = async () => {
     if (!userData.email || !userData.password) {
       setFormStatus("please fill all fields.");
@@ -34,7 +35,7 @@ const LogIn = () => {
       setFormStatus(response.message);
       setTimeout(() => {
         navigate("/dashboard");
-      }, 1000);
+      }, 500);
     } catch (error: any) {
       setFormStatus(error.message);
       setWrongValues(true);

@@ -1,13 +1,17 @@
 import "./Dashboard.css";
 import { useState } from "react";
 import UsersList from "../../components/UsersList/UsersList";
+import EditProfile from "../../components/EditProfile/EditProfile";
+import LogOut from "../../components/LogOut/LogOut";
 
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentSection, isCurrentSection] = useState("");
+  const [currentSection, setCurrentSection] = useState("");
+
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
+
   return (
     <>
       <div className="burgerNav">
@@ -47,16 +51,47 @@ const Dashboard = () => {
       <ul
         className={isOpen ? "burgerMenu openBurger glass" : "burgerMenu glass"}
       >
-        <li>Edit profile</li>
-        <li>All users</li>
+        <li
+          onClick={() => {
+            setCurrentSection("update");
+          }}
+        >
+          Edit profile
+        </li>
+        <li
+          onClick={() => {
+            setCurrentSection("users");
+          }}
+        >
+          All users
+        </li>
         <div className="navLine" />
-        <li>Mail to Juliette</li>
-        <li>Call Juliette</li>
+        <li>Get in touch</li>
         <div className="navLine" />
         <li>Documentation</li>
-        <li>Log out</li>
+        <li
+          onClick={() => {
+            setCurrentSection("logout");
+          }}
+        >
+          Log out
+        </li>
       </ul>
-      <section></section>
+      {currentSection === "users" && (
+        <section>
+          <UsersList />
+        </section>
+      )}
+      {currentSection === "update" && (
+        <section>
+          <EditProfile />
+        </section>
+      )}
+      {currentSection === "logout" && (
+        <section>
+          <LogOut setCurrentSection={setCurrentSection} />
+        </section>
+      )}
     </>
   );
 };

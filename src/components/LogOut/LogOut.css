@@ -1,0 +1,29 @@
+.logout {
+  display: grid;
+  padding: 1.25rem;
+  border-radius: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.25rem;
+  h3 {
+    grid-area: 1 / 1 / 2 / 3;
+  }
+  button:hover {
+    transform: scale(0.97);
+  }
+}
+.isDisapearing {
+  animation: fadeOut 0.8s ease-in-out both;
+}
+
+@keyframes fadeOut {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(3);
+    filter: blur(20px);
+    opacity: 0;
+  }
+}

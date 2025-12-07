@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: 250px;
   grid-template-rows: auto auto;
-  border-radius: 23px;
+  border-radius: 1.5rem;
   width: 100%;
 }
 .userList-items span {

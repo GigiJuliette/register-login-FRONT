@@ -6,7 +6,7 @@ const Auth = () => {
   const [activeTab, setActiveTab] = useState("login");
   return (
     <>
-      <div>
+      <section>
         <div className="authBtn-wrapper">
           <button
             className={
@@ -32,7 +32,7 @@ const Auth = () => {
             <Register setActiveTab={setActiveTab} />
           )}
         </div>
-      </div>
+      </section>
     </>
   );
 };

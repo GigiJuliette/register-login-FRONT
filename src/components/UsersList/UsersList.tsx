@@ -9,25 +9,34 @@ interface UserInfos {
 }
 const UsersList = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
+        setLoading(true);
         const allUsers = await userService.getAllUsers();
         setUsers(allUsers);
       } catch (error: any) {
-        if (error.status === 401 || error.status === 403) {
+        if (
+          error.status === 401 ||
+          error.status === 403 ||
+          error.message === "No token found"
+        ) {
           navigate("/authentication");
         }
+      } finally {
+        setLoading(false);
       }
     };
     fetchUsers();
-  }, [navigate]);
+  }, []);
 
-  if (users.length === 0) {
-    return <p>Loading</p>;
+  if (loading) {
+    return <p>Loading...</p>;
   }
+
   return (
     <>
       <h2>Users List</h2>
