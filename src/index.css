@@ -2,6 +2,7 @@ body {
   color: canvas;
   font-family: "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue",
     Helvetica, Arial, sans-serif, system-ui;
+  background: black;
 }
 *,
 *:after,

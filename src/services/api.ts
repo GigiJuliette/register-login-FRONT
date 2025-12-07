@@ -33,4 +33,10 @@ export const userService = {
     });
     return handleResponse(response);
   },
+  // verifyToken: async () => {
+  //   const response = await fetch(`${API_URL}verifyToken`, {
+  //     method: "GET",
+  //     headers: { Authorization: `Bearer ${localStorage.token}` },
+  //   });
+  // },
 };

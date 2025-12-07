@@ -1,12 +1,10 @@
 import "./App.css";
-import Background from "./components/Background/Background";
-import Auth from "./components/Auth/Auth";
+import { Outlet } from "react-router";
 
 function App() {
   return (
     <>
-      <Background />
-      <Auth />
+      <Outlet />
     </>
   );
 }
