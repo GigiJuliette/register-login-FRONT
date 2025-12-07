@@ -33,7 +33,7 @@ const LogIn = () => {
       });
       setFormStatus(response.message);
       setTimeout(() => {
-        navigate("/users");
+        navigate("/dashboard");
       }, 1000);
     } catch (error: any) {
       setFormStatus(error.message);
