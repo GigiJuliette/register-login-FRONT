@@ -7,7 +7,11 @@ interface UserData {
   password: string;
 }
 
-const Register = () => {
+interface RegisterProps {
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const Register = ({ setActiveTab }: RegisterProps) => {
   const [userData, setUserData] = useState<UserData>({
     nickname: "",
     email: "",
@@ -37,6 +41,9 @@ const Register = () => {
         password: "",
       });
       setConfirmPassword("");
+      setTimeout(() => {
+        setActiveTab("login");
+      }, 1000);
     } catch (error) {
       setFormStatus("registration failed. please try again.");
     }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { userService } from "../../services/api";
+import { useNavigate } from "react-router";
 
 interface UserData {
   nickname: string;
@@ -16,6 +17,7 @@ const LogIn = () => {
   const [seePassword, setSeePassword] = useState(false);
   const [formStatus, setFormStatus] = useState("welcome");
   const [wrongValues, setWrongValues] = useState(false);
+  const navigate = useNavigate();
   const loginHandler = async () => {
     if (!userData.email || !userData.password) {
       setFormStatus("please fill all fields.");
@@ -30,7 +32,9 @@ const LogIn = () => {
         password: "",
       });
       setFormStatus(response.message);
-      console.log(localStorage);
+      setTimeout(() => {
+        navigate("/users");
+      }, 1000);
     } catch (error: any) {
       setFormStatus(error.message);
       setWrongValues(true);

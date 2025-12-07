@@ -25,7 +25,11 @@ const Auth = () => {
         </button>
       </div>
       <div className="authComponent-wrapper glass">
-        {activeTab === "login" ? <LogIn /> : <Register />}
+        {activeTab === "login" ? (
+          <LogIn />
+        ) : (
+          <Register setActiveTab={setActiveTab} />
+        )}
       </div>
     </>
   );
