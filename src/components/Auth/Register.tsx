@@ -5,6 +5,10 @@ interface UserData {
   nickname: string;
   email: string;
   password: string;
+  name: string;
+  surname: string;
+  profileIcon_id: number;
+  bio: string;
 }
 
 interface RegisterProps {
@@ -16,6 +20,10 @@ const Register = ({ setActiveTab }: RegisterProps) => {
     nickname: "",
     email: "",
     password: "",
+    name: "",
+    surname: "",
+    profileIcon_id: 0,
+    bio: "",
   });
   const [confirmPassword, setConfirmPassword] = useState("");
   const [seePassword, setSeePassword] = useState(false);
@@ -39,6 +47,10 @@ const Register = ({ setActiveTab }: RegisterProps) => {
         nickname: "",
         email: "",
         password: "",
+        name: "",
+        surname: "",
+        profileIcon_id: 0,
+        bio: "",
       });
       setConfirmPassword("");
       setTimeout(() => {

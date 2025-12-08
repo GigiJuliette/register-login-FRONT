@@ -21,7 +21,7 @@ const LogOut = ({ setCurrentSection }: LogOutProps) => {
             }, 1000);
           }}
         >
-          <strong>No</strong>, i regret.
+          <strong>No</strong>, I regret.
         </button>
         <button
           type="button"

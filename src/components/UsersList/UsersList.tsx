@@ -19,8 +19,6 @@ const UsersList = () => {
         const allUsers = await userService.getAllUsers();
         setUsers(allUsers);
       } catch (error: any) {
-        console.log(error.message);
-        console.log(error.status);
         if (
           error.status === 401 ||
           error.status === 403 ||

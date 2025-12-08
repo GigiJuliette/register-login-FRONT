@@ -49,16 +49,35 @@ export const userService = {
     return handleResponse(response);
   },
 
-  updateProfile: async (updatedData: {
-    nickname: string;
-    email: string;
+  getMyUser: async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("No token found");
+    }
+    const response = await fetch(`${API_URL}myUser`, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return handleResponse(response);
+  },
+
+  updateProfile: async (updateData: {
+    nickname?: string;
+    name?: string;
+    surname?: string;
+    bio?: string;
+    email?: string;
+    profileIcon_id?: number;
     password: string;
   }) => {
     const token = localStorage.getItem("token");
     const response = await fetch(`${API_URL}update`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: JSON.stringify(updatedData),
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateData),
     });
     return handleResponse(response);
   },

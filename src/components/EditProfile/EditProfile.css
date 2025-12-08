@@ -1,0 +1,40 @@
+.updateProfile-form {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  h1 {
+    margin-bottom: 3rem;
+  }
+  button[type="submit"] {
+    font-size: 1.25rem;
+  }
+}
+.updateProfile-form > * {
+  position: relative;
+}
+.updateProfile-form input {
+  border-top: none;
+  border-left: none;
+  /* border: none; */
+  margin: 1rem 0;
+  text-align: center;
+  font-size: 1.25rem;
+}
+.updateProfile-form div::before {
+  content: attr(data-text);
+  font-family: "Playwrite NO", cursive;
+  position: absolute;
+  top: 20%;
+  left: 45%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  width: 100%;
+  pointer-events: none;
+  display: inline-block;
+  opacity: 0.5;
+}
+/* .updateProfile-form button,
+.updateProfile-form em {
+} */
