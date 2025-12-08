@@ -1,4 +1,5 @@
 import { userService } from "../../services/api";
+import EditProfileIcon from "../ProfileIcon/EditProfileIcon";
 import "./EditProfile.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -13,14 +14,15 @@ interface UserData {
 }
 
 const EditProfile = () => {
-  const [formStatus, setFormStatus] = useState(
+  const [formStatus, setFormStatus] = useState<string>(
     "Click on values to update them."
   );
-  const [seePassword, setSeePassword] = useState(false);
-  const [uncorrect, setUncorrect] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [seePassword, setSeePassword] = useState<boolean>(false);
+  const [uncorrect, setUncorrect] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
   const [userData, setUserData] = useState<UserData | null>();
+  const [currentIcon, setCurrentIcon] = useState<number>(0);
 
   // const [updateData, setUpdateData] = useState<UserData>({
   //   password: "",
@@ -34,7 +36,7 @@ const EditProfile = () => {
         const myUser = await userService.getMyUser();
         console.log("bye");
         setUserData({
-          name: myUser.name || "",
+          name: myUser.name,
           surname: myUser.surname,
           nickname: myUser.nickname,
           bio: myUser.bio,
@@ -74,6 +76,7 @@ const EditProfile = () => {
     <>
       <form className="updateProfile-form">
         <h1>My profile</h1>
+        <EditProfileIcon setUserData={setUserData} userData={userData} />
         <div data-text="Nickname">
           <input
             type="text"

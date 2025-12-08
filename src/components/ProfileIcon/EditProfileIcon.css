@@ -1,0 +1,51 @@
+.profileIcon-Prim {
+  width: 150px;
+  clip-path: circle(50%);
+  position: relative;
+}
+.profileIcon-sec {
+  clip-path: circle(50%);
+  width: 50px;
+}
+.editIcon {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  width: 40px;
+  backdrop-filter: blur(2px);
+  img {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+  }
+}
+.iconPicker {
+  padding: 0.5rem;
+  border-radius: 2rem;
+  position: absolute;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  right: -140%;
+  bottom: 0;
+}
+.iconPicker.isClosed {
+  pointer-events: none;
+  opacity: 0;
+}
+.iconPicker.isOpen {
+  pointer-events: all;
+  opacity: 1;
+}
+.iconPicker img:hover {
+  backdrop-filter: blur(5px);
+  transform: scale(1.5);
+  z-index: 2;
+}
+.iconPicker img {
+  transition-timing-function: cubic-bezier(0.37, -0.86, 0.8, 1.68);
+}
