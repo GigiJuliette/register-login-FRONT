@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: 1r;
   grid-auto-rows: auto auto;
-  width: clamp(300px, 95%, 700px);
 }
 .authComponent-wrapper {
   border: 1px solid rgba(255, 255, 255, 0.5);

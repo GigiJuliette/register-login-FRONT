@@ -10,7 +10,12 @@ import { useState } from "react";
 
 interface EditProfileIconProps {
   userData: {
-    profileIcon_id: number;
+    name?: string;
+    surname?: string;
+    nickname?: string;
+    bio?: string;
+    email?: string;
+    profileIcon_id?: number;
   };
   setUserData: React.Dispatch<React.SetStateAction<any>>;
 }
@@ -18,10 +23,12 @@ interface EditProfileIconProps {
 const editProfileIcon = ({ userData, setUserData }: EditProfileIconProps) => {
   const [isClosed, setIsClosed] = useState<boolean>(true);
   const icons = [icon0, icon1, icon2, icon3, icon4, icon5];
+  const currentIcon = userData.profileIcon_id ?? 0;
+
   return (
     <div className="iconPicker-container">
       <img
-        src={icons[userData.profileIcon_id]}
+        src={icons[currentIcon]}
         className="profileIcon-Prim"
         key={userData.profileIcon_id}
       />

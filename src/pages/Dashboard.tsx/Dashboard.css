@@ -92,6 +92,7 @@
 section {
   animation: fadeIn 0.3s ease-in both;
   height: auto;
+  width: auto;
 }
 @keyframes fadeIn {
   from {

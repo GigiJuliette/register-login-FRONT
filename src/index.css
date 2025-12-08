@@ -22,7 +22,8 @@ h4 {
   padding: 0;
 }
 input,
-button {
+button,
+textarea {
   border: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -36,7 +37,10 @@ button {
 
 input:focus,
 input:active,
-input:focus-visible {
+input:focus-visible,
+textarea:focus,
+textarea:active,
+textarea:focus-visible {
   outline: none;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid transparent;

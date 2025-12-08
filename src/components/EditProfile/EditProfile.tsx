@@ -1,6 +1,7 @@
+import "./EditProfile.css";
+
 import { userService } from "../../services/api";
 import EditProfileIcon from "../ProfileIcon/EditProfileIcon";
-import "./EditProfile.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
@@ -17,16 +18,9 @@ const EditProfile = () => {
   const [formStatus, setFormStatus] = useState<string>(
     "Click on values to update them."
   );
-  const [seePassword, setSeePassword] = useState<boolean>(false);
-  const [uncorrect, setUncorrect] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
   const navigate = useNavigate();
-  const [userData, setUserData] = useState<UserData | null>();
-  const [currentIcon, setCurrentIcon] = useState<number>(0);
-
-  // const [updateData, setUpdateData] = useState<UserData>({
-  //   password: "",
-  // });
+  const [userData, setUserData] = useState<UserData>({});
 
   useEffect(() => {
     const fetchMyUser = async () => {
@@ -69,7 +63,7 @@ const EditProfile = () => {
       setLoading(false);
     }
   };
-  if (loading) {
+  if (loading || !userData) {
     return <p>Loading ...</p>;
   }
   return (
@@ -77,7 +71,7 @@ const EditProfile = () => {
       <form className="updateProfile-form">
         <h1>My profile</h1>
         <EditProfileIcon setUserData={setUserData} userData={userData} />
-        <div data-text="Nickname">
+        <div data-text="Nickname" className="updateProfile-nickname">
           <input
             type="text"
             value={userData.nickname}
@@ -86,7 +80,7 @@ const EditProfile = () => {
             }}
           />
         </div>
-        <div data-text="Name">
+        <div data-text="Name" className="updateProfile-name">
           <input
             type="text"
             value={userData.name}
@@ -95,7 +89,7 @@ const EditProfile = () => {
             }}
           />
         </div>
-        <div data-text="Surname">
+        <div data-text="Surname" className="updateProfile-surname">
           <input
             type="text"
             value={userData.surname}
@@ -104,16 +98,15 @@ const EditProfile = () => {
             }}
           />
         </div>
-        <div data-text="Bio">
+        <div data-text="Bio" className="updateProfile-bio">
           <input
-            type="text"
             value={userData.bio}
             onChange={(e) => {
               setUserData({ ...userData, bio: e.target.value });
             }}
           />
         </div>
-        <div data-text="Email">
+        <div data-text="Email" className="updateProfile-email">
           <input
             type="email"
             value={userData.email}
@@ -122,28 +115,9 @@ const EditProfile = () => {
             }}
           />
         </div>
-        {/* <div data-text="Password">
-          <input
-            type={seePassword ? "text" : "password"}
-            // value={updateData.password}
-            className={uncorrect ? "uncorrectPassword" : ""}
-            onChange={(e) => {
-              setUncorrect(false);
-              // setUpdateData({ ...updateData, password: e.target.value });
-            }}
-          />
-        </div> */}
-        {/* <button
-          type="button"
-          className="toggleHide"
-          onClick={() => {
-            setSeePassword((prev) => !prev);
-          }}
-        >
-          <em>{seePassword ? "hide passwords" : "show passwords"}</em>
-        </button> */}
         <em className="authStatus">{formStatus}</em>
         <button
+          className="glass"
           type="submit"
           onClick={(e) => {
             e.preventDefault();

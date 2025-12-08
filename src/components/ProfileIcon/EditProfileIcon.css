@@ -1,3 +1,9 @@
+.iconPicker-container {
+  grid-area: img;
+  justify-self: start;
+  width: fit-content;
+}
+
 .profileIcon-Prim {
   width: 150px;
   clip-path: circle(50%);
@@ -30,15 +36,18 @@
   display: grid;
   gap: 0.5rem;
   grid-template-columns: 1fr 1fr 1fr;
-  right: -140%;
-  bottom: 0;
+  left: -100px;
+  top: 1rem;
+  transition-timing-function: cubic-bezier(0.37, -0.86, 0, 2);
 }
 .iconPicker.isClosed {
   pointer-events: none;
+  transform: scale(0) rotate(90deg);
   opacity: 0;
 }
 .iconPicker.isOpen {
   pointer-events: all;
+  transform: scale(1) rotate(0);
   opacity: 1;
 }
 .iconPicker img:hover {

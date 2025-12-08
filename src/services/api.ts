@@ -68,7 +68,6 @@ export const userService = {
     bio?: string;
     email?: string;
     profileIcon_id?: number;
-    password: string;
   }) => {
     const token = localStorage.getItem("token");
     const response = await fetch(`${API_URL}update`, {
