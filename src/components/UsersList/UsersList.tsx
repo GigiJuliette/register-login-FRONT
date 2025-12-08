@@ -1,11 +1,11 @@
 import "./UsersList.css";
 
-import icon0 from "../../assets/iconProfile0.jpg";
-import icon1 from "../../assets/iconProfile1.jpg";
-import icon2 from "../../assets/iconProfile2.jpg";
-import icon3 from "../../assets/iconProfile3.jpg";
-import icon4 from "../../assets/iconProfile4.jpg";
-import icon5 from "../../assets/iconProfile5.jpg";
+import icon0 from "../../assets/profile/iconProfile0.jpg";
+import icon1 from "../../assets/profile/iconProfile1.jpg";
+import icon2 from "../../assets/profile/iconProfile2.jpg";
+import icon3 from "../../assets/profile/iconProfile3.jpg";
+import icon4 from "../../assets/profile/iconProfile4.jpg";
+import icon5 from "../../assets/profile/iconProfile5.jpg";
 
 import { useEffect, useState } from "react";
 import { userService } from "../../services/api";

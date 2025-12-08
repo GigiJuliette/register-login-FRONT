@@ -23,16 +23,6 @@ const Dashboard = () => {
           onClick={toggleMenu}
           style={{ cursor: "pointer" }}
         >
-          <defs>
-            <filter id="shadow">
-              <feDropShadow
-                dx="0"
-                dy="0"
-                stdDeviation="1.5"
-                floodColor="#000"
-              />
-            </filter>
-          </defs>
           <path
             className="line top"
             d="m 30,33 h 40 c 13.100415,0 14.380204,31.80258 6.899646,33.421777 -24.612039,5.327373 9.016154,-52.337577 -12.75751,-30.563913 l -28.284272,28.284272"
@@ -68,7 +58,9 @@ const Dashboard = () => {
         <div className="navLine" />
         <li>Documentation</li>
         <div className="navLine" />
-        <li>Get in touch</li>
+        <li>
+          <a href="mailto:gigialiasjuliette@gmail.com">Get in touch</a>
+        </li>
         <li
           onClick={() => {
             setCurrentSection("logout");
