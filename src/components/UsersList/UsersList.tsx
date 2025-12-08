@@ -1,11 +1,23 @@
 import "./UsersList.css";
+
+import icon0 from "../../assets/iconProfile0.jpg";
+import icon1 from "../../assets/iconProfile1.jpg";
+import icon2 from "../../assets/iconProfile2.jpg";
+import icon3 from "../../assets/iconProfile3.jpg";
+import icon4 from "../../assets/iconProfile4.jpg";
+import icon5 from "../../assets/iconProfile5.jpg";
+
 import { useEffect, useState } from "react";
 import { userService } from "../../services/api";
 import { useNavigate } from "react-router";
 
 interface UserInfos {
-  nickname: string;
-  email: string;
+  name?: string;
+  surname?: string;
+  nickname?: string;
+  bio?: string;
+  email?: string;
+  profileIcon_id?: number;
 }
 const UsersList = () => {
   const [users, setUsers] = useState([]);
@@ -36,16 +48,19 @@ const UsersList = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
+  const icons = [icon0, icon1, icon2, icon3, icon4, icon5];
 
   return (
     <>
       <h2>Users List</h2>
       <ul className="usersList-container">
         {users.map((u: UserInfos) => {
+          const currentIcon = u.profileIcon_id ?? 0;
           return (
             <li className="userList-items glass" key={u.email}>
-              <span>{u.nickname}</span>
-              <em>{u.email}</em>
+              <img src={icons[currentIcon]} alt="User's icon" />
+              <h4>{u.nickname}</h4>
+              <em>{u.bio}</em>
             </li>
           );
         })}

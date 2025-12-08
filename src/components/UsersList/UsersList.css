@@ -1,27 +1,40 @@
 .usersList-container {
   display: flex;
-  flex-direction: column;
-  list-style-type: none;
-  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem;
+}
+.usersList-container > * {
+  flex: 0 1 auto;
+  max-width: 450px;
 }
 .userList-items {
   display: grid;
-  grid-template-columns: 250px;
+  grid-template-columns: 75px auto;
   grid-template-rows: auto auto;
+  grid-template-areas:
+    "img name"
+    "img bio";
   border-radius: 1.5rem;
   width: 100%;
+  padding: 0.5rem;
+  img {
+    clip-path: circle(50%);
+    width: 75px;
+    grid-area: img;
+  }
 }
-.userList-items span {
+.userList-items h4 {
   border-bottom: 1px solid;
   border-image: radial-gradient(
       circle,
       rgba(255, 255, 255, 0.8) 0%,
-      transparent 100%
+      transparent 80%
     )
     1;
 }
 .userList-items > * {
-  width: 100%;
   line-height: 2.2rem;
   display: inline-block;
   text-align: center;

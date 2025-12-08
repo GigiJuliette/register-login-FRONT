@@ -56,19 +56,19 @@ const Dashboard = () => {
             setCurrentSection("update");
           }}
         >
-          Edit profile
+          My profile
         </li>
         <li
           onClick={() => {
             setCurrentSection("users");
           }}
         >
-          All users
+          Users list
         </li>
         <div className="navLine" />
-        <li>Get in touch</li>
-        <div className="navLine" />
         <li>Documentation</li>
+        <div className="navLine" />
+        <li>Get in touch</li>
         <li
           onClick={() => {
             setCurrentSection("logout");

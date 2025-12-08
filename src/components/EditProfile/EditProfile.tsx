@@ -1,7 +1,7 @@
 import "./EditProfile.css";
 
 import { userService } from "../../services/api";
-import EditProfileIcon from "../ProfileIcon/EditProfileIcon";
+import EditProfileIcon from "../EditProfileIcon/EditProfileIcon";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
