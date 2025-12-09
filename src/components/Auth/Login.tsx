@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { userService } from "../../services/api";
 import { useNavigate } from "react-router";
+import { UserContext } from "../../context/userProvider";
 
 interface UserData {
   nickname: string;
@@ -19,6 +20,7 @@ const LogIn = () => {
   const [formStatus, setFormStatus] = useState("Happy to see you again !");
   const [uncorrect, setUncorrect] = useState(false);
   const navigate = useNavigate();
+  const { refreshUser } = useContext(UserContext);
 
   const loginHandler = async () => {
     if (!userData.email || !userData.password) {
@@ -31,6 +33,7 @@ const LogIn = () => {
       setLoading(true);
       const response = await userService.getToken(userData);
       localStorage.setItem("token", response.token);
+      await refreshUser();
       setUserData({
         nickname: "",
         email: "",

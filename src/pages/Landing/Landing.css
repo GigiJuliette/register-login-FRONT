@@ -1,0 +1,12 @@
+.landingSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    font-size: 5rem;
+  }
+  a {
+    border-radius: 50px;
+    padding: 0.25rem 0.75rem;
+  }
+}

@@ -7,7 +7,7 @@ const ErrorPage = () => {
       <h1>404</h1>
       <div>
         <em>You should go back to </em>
-        <Link to="/dashboard" className="glass">
+        <Link to="/dashboard" className="glass regularBtn">
           somewhere safe
         </Link>
       </div>

@@ -8,10 +8,15 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import ErrorPage from "./pages/Error/ErrorPage.tsx";
+import Landing from "./pages/Landing/Landing.tsx";
 const router = createBrowserRouter([
   {
     element: <App />,
     children: [
+      {
+        path: "/",
+        element: <Landing />,
+      },
       {
         path: "/dashboard",
         element: <Dashboard />,
@@ -20,6 +25,7 @@ const router = createBrowserRouter([
         path: "/authentication",
         element: <AuthPage />,
       },
+
       {
         path: "*",
         element: <ErrorPage />,

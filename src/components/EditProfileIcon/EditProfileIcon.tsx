@@ -7,6 +7,7 @@ import icon3 from "../../assets/profile/iconProfile3.jpg";
 import icon4 from "../../assets/profile/iconProfile4.jpg";
 import icon5 from "../../assets/profile/iconProfile5.jpg";
 import { useState } from "react";
+import IconProfile from "../IconProfile/IconProfile";
 
 interface EditProfileIconProps {
   userData: {
@@ -27,11 +28,7 @@ const editProfileIcon = ({ userData, setUserData }: EditProfileIconProps) => {
 
   return (
     <div className="iconPicker-container">
-      <img
-        src={icons[currentIcon]}
-        className="profileIcon-Prim"
-        key={userData.profileIcon_id}
-      />
+      <IconProfile iconIndex={currentIcon} className="profileIcon-Prim" />
       <div
         className=" editIcon glass"
         onClick={() => {
