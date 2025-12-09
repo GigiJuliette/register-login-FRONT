@@ -1,12 +1,14 @@
 import "./Dashboard.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import UsersList from "../../components/UsersList/UsersList";
 import EditProfile from "../../components/EditProfile/EditProfile";
 import LogOut from "../../components/LogOut/LogOut";
-
+import { UserContext } from "../../context/userProvider";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState("");
+
+  const { user } = useContext(UserContext);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
@@ -44,6 +46,7 @@ const Dashboard = () => {
         <li
           onClick={() => {
             setCurrentSection("update");
+            toggleMenu();
           }}
         >
           My profile
@@ -51,6 +54,7 @@ const Dashboard = () => {
         <li
           onClick={() => {
             setCurrentSection("users");
+            toggleMenu();
           }}
         >
           Users list
@@ -64,11 +68,17 @@ const Dashboard = () => {
         <li
           onClick={() => {
             setCurrentSection("logout");
+            toggleMenu();
           }}
         >
           Log out
         </li>
       </ul>
+      {currentSection === "" && (
+        <section>
+          <h1>Welcome{user.nickname} !</h1>
+        </section>
+      )}
       {currentSection === "users" && (
         <section>
           <UsersList />

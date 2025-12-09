@@ -2,113 +2,72 @@ import "./EditProfile.css";
 
 import { userService } from "../../services/api";
 import EditProfileIcon from "../EditProfileIcon/EditProfileIcon";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-
-interface UserData {
-  name?: string;
-  surname?: string;
-  nickname?: string;
-  bio?: string;
-  email?: string;
-  profileIcon_id?: number;
-}
+import { useState, useContext } from "react";
+import { UserContext } from "../../context/userProvider";
 
 const EditProfile = () => {
+  const { user, setUser, loading } = useContext(UserContext);
   const [formStatus, setFormStatus] = useState<string>(
     "Click on values to update them."
   );
-  const [loading, setLoading] = useState<boolean>(true);
-  const navigate = useNavigate();
-  const [userData, setUserData] = useState<UserData>({});
-
-  useEffect(() => {
-    const fetchMyUser = async () => {
-      try {
-        setLoading(true);
-        const myUser = await userService.getMyUser();
-        setUserData({
-          name: myUser.name,
-          surname: myUser.surname,
-          nickname: myUser.nickname,
-          bio: myUser.bio,
-          email: myUser.email,
-          profileIcon_id: myUser.profileIcon_id,
-        });
-      } catch (error: any) {
-        if (
-          error.status === 401 ||
-          error.status === 403 ||
-          error.message === "No token found"
-        ) {
-          navigate("/authentication");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchMyUser();
-  }, []);
 
   const updateUserData = async () => {
     try {
-      await userService.updateProfile(userData);
+      await userService.updateProfile(user);
       setFormStatus("Update successfull!");
     } catch (error: any) {
       setFormStatus(error.message);
-    } finally {
-      setLoading(false);
     }
   };
-  if (loading || !userData) {
+  if (!user || loading) {
     return <p>Loading ...</p>;
   }
   return (
     <>
       <form className="updateProfile-form">
         <h1>My profile</h1>
-        <EditProfileIcon setUserData={setUserData} userData={userData} />
+        <EditProfileIcon setUserData={setUser} userData={user} />
         <div data-text="Nickname" className="updateProfile-nickname">
           <input
             type="text"
-            value={userData.nickname}
+            value={user.nickname}
             onChange={(e) => {
-              setUserData({ ...userData, nickname: e.target.value });
+              setUser({ ...user, nickname: e.target.value });
             }}
           />
         </div>
         <div data-text="Name" className="updateProfile-name">
           <input
             type="text"
-            value={userData.name}
+            value={user.name}
             onChange={(e) => {
-              setUserData({ ...userData, name: e.target.value });
+              setUser({ ...user, name: e.target.value });
             }}
           />
         </div>
         <div data-text="Surname" className="updateProfile-surname">
           <input
             type="text"
-            value={userData.surname}
+            value={user.surname}
             onChange={(e) => {
-              setUserData({ ...userData, surname: e.target.value });
+              setUser({ ...user, surname: e.target.value });
             }}
           />
         </div>
         <div data-text="Bio" className="updateProfile-bio">
           <input
-            value={userData.bio}
+            value={user.bio}
             onChange={(e) => {
-              setUserData({ ...userData, bio: e.target.value });
+              setUser({ ...user, bio: e.target.value });
             }}
           />
         </div>
         <div data-text="Email" className="updateProfile-email">
           <input
             type="email"
-            value={userData.email}
+            value={user.email}
             onChange={(e) => {
-              setUserData({ ...userData, email: e.target.value });
+              setUser({ ...user, email: e.target.value });
             }}
           />
         </div>
