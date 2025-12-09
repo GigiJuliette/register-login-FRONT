@@ -20,7 +20,7 @@ interface UserInfos {
   profileIcon_id?: number;
 }
 const UsersList = () => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<UserInfos[]>();
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ const UsersList = () => {
     fetchUsers();
   }, []);
 
-  if (loading) {
+  if (loading || !users) {
     return <p>Loading...</p>;
   }
   const icons = [icon0, icon1, icon2, icon3, icon4, icon5];

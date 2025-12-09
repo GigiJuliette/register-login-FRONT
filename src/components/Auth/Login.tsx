@@ -35,7 +35,7 @@ const LogIn = () => {
       setFormStatus(response.message);
       setTimeout(() => {
         navigate("/dashboard");
-      }, 500);
+      }, 1000);
     } catch (error: any) {
       setFormStatus(error.message);
       setWrongValues(true);
