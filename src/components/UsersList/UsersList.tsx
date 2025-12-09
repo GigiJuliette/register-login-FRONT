@@ -52,7 +52,7 @@ const UsersList = () => {
 
   return (
     <>
-      <h2>Users List</h2>
+      <h1>Users List</h1>
       <ul className="usersList-container">
         {users.map((u: UserInfos) => {
           const currentIcon = u.profileIcon_id ?? 0;

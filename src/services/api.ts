@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:2711/";
+const API_URL = import.meta.env.API_URL || "http://localhost:2711/";
 
 const handleResponse = async (response: Response) => {
   if (!response.ok) {

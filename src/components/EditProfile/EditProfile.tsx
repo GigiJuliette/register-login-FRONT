@@ -26,9 +26,7 @@ const EditProfile = () => {
     const fetchMyUser = async () => {
       try {
         setLoading(true);
-        console.log("hi");
         const myUser = await userService.getMyUser();
-        console.log("bye");
         setUserData({
           name: myUser.name,
           surname: myUser.surname,
@@ -54,7 +52,6 @@ const EditProfile = () => {
 
   const updateUserData = async () => {
     try {
-      console.log(userData);
       await userService.updateProfile(userData);
       setFormStatus("Update successfull!");
     } catch (error: any) {
