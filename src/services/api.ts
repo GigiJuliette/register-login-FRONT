@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.API_URL || "http://localhost:2711/";
+const VITE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:2711/";
 
 const handleResponse = async (response: Response) => {
   if (!response.ok) {
@@ -16,7 +16,7 @@ export const userService = {
     email: string;
     password: string;
   }) => {
-    const response = await fetch(`${API_URL}register`, {
+    const response = await fetch(`${VITE_API_URL}register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
@@ -29,7 +29,7 @@ export const userService = {
     email: string;
     password: string;
   }) => {
-    const response = await fetch(`${API_URL}logIn`, {
+    const response = await fetch(`${VITE_API_URL}logIn`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
@@ -42,7 +42,7 @@ export const userService = {
     if (!token) {
       throw new Error("No token found");
     }
-    const response = await fetch(`${API_URL}users`, {
+    const response = await fetch(`${VITE_API_URL}users`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -54,7 +54,7 @@ export const userService = {
     if (!token) {
       throw new Error("No token found");
     }
-    const response = await fetch(`${API_URL}myUser`, {
+    const response = await fetch(`${VITE_API_URL}myUser`, {
       method: "GET",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -70,7 +70,7 @@ export const userService = {
     profileIcon_id?: number;
   }) => {
     const token = localStorage.getItem("token");
-    const response = await fetch(`${API_URL}update`, {
+    const response = await fetch(`${VITE_API_URL}update`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
