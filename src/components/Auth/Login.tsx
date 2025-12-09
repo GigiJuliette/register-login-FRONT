@@ -15,16 +15,20 @@ const LogIn = () => {
     password: "",
   });
   const [seePassword, setSeePassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formStatus, setFormStatus] = useState("Happy to see you again !");
-  const [wrongValues, setWrongValues] = useState(false);
+  const [uncorrect, setUncorrect] = useState(false);
   const navigate = useNavigate();
 
   const loginHandler = async () => {
     if (!userData.email || !userData.password) {
-      setFormStatus("please fill all fields.");
+      setFormStatus("Please fill all fields.");
+      setLoading(true);
+      setUncorrect(true);
       return;
     }
     try {
+      setLoading(true);
       const response = await userService.getToken(userData);
       localStorage.setItem("token", response.token);
       setUserData({
@@ -38,7 +42,7 @@ const LogIn = () => {
       }, 1000);
     } catch (error: any) {
       setFormStatus(error.message);
-      setWrongValues(true);
+      setUncorrect(true);
     }
   };
 
@@ -52,7 +56,8 @@ const LogIn = () => {
           value={userData.email}
           onChange={(e) => {
             setUserData({ ...userData, email: e.target.value });
-            setWrongValues(false);
+            setUncorrect(false);
+            setLoading(false);
           }}
         />
         <div className="loggin-psw">
@@ -62,7 +67,8 @@ const LogIn = () => {
             value={userData.password}
             onChange={(e) => {
               setUserData({ ...userData, password: e.target.value });
-              setWrongValues(false);
+              setUncorrect(false);
+              setLoading(false);
             }}
           />
           <button
@@ -76,8 +82,9 @@ const LogIn = () => {
           </button>
         </div>
         <button
+          disabled={loading}
           type="submit"
-          className={wrongValues ? "uncorrectLoggin" : ""}
+          className={uncorrect ? "uncorrectLoggin" : ""}
           onClick={(e) => {
             e.preventDefault();
             loginHandler();

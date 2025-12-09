@@ -73,6 +73,7 @@ const EditProfile = () => {
         </div>
         <em className="authStatus">{formStatus}</em>
         <button
+          disabled={loading}
           className="glass"
           type="submit"
           onClick={(e) => {

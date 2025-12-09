@@ -29,10 +29,13 @@ const Register = ({ setActiveTab }: RegisterProps) => {
   const [seePassword, setSeePassword] = useState(false);
   const [uncorrect, setUncorrect] = useState(false);
   const [formStatus, setFormStatus] = useState("welcome");
+  const [loading, setLoading] = useState(false);
 
   const createUser = async () => {
     if (!userData.nickname || !userData.email || !userData.password) {
       setFormStatus("please fill all fields.");
+      setLoading(true);
+      setUncorrect(true);
       return;
     }
     if (userData.password !== confirmPassword) {
@@ -41,6 +44,7 @@ const Register = ({ setActiveTab }: RegisterProps) => {
       return;
     }
     try {
+      setLoading(true);
       await userService.register(userData);
       setFormStatus("register successfull!");
       setUserData({
@@ -70,6 +74,7 @@ const Register = ({ setActiveTab }: RegisterProps) => {
             value={userData.nickname}
             onChange={(e) => {
               setUserData({ ...userData, nickname: e.target.value });
+              setLoading(false);
             }}
           />
         </div>
@@ -79,6 +84,7 @@ const Register = ({ setActiveTab }: RegisterProps) => {
             value={userData.email}
             onChange={(e) => {
               setUserData({ ...userData, email: e.target.value });
+              setLoading(false);
             }}
           />
         </div>
@@ -88,6 +94,7 @@ const Register = ({ setActiveTab }: RegisterProps) => {
             value={userData.password}
             onChange={(e) => {
               setUserData({ ...userData, password: e.target.value });
+              setLoading(false);
             }}
           />
         </div>
@@ -95,12 +102,11 @@ const Register = ({ setActiveTab }: RegisterProps) => {
           <input
             type={seePassword ? "text" : "password"}
             value={confirmPassword}
-            className={
-              uncorrect ? "uncorrectPassword loggin-psw" : "loggin-psw"
-            }
+            className="loggin-psw"
             onChange={(e) => {
               setUncorrect(false);
               setConfirmPassword(e.target.value);
+              setLoading(false);
             }}
           />
         </div>
@@ -114,6 +120,8 @@ const Register = ({ setActiveTab }: RegisterProps) => {
           <em>{seePassword ? "hide passwords" : "show passwords"}</em>
         </button>
         <button
+          className={uncorrect ? "uncorrectLoggin" : ""}
+          disabled={loading}
           type="submit"
           onClick={(e) => {
             e.preventDefault();
