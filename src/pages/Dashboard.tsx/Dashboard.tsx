@@ -5,17 +5,19 @@ import EditProfile from "../../components/EditProfile/EditProfile";
 import LogOut from "../../components/LogOut/LogOut";
 import { UserContext } from "../../context/userProvider";
 import IconProfile from "../../components/IconProfile/IconProfile";
-
+import { useNavigate } from "react-router";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState("");
-
+  const navigate = useNavigate();
   const { user } = useContext(UserContext);
 
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
-
+  if ((localStorage.token = "")) {
+    navigate("/authentication");
+  }
   return (
     <>
       <div className="burgerNav">
