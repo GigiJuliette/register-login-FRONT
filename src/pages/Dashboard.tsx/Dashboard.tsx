@@ -1,5 +1,5 @@
 import "./Dashboard.css";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import UsersList from "../../components/UsersList/UsersList";
 import EditProfile from "../../components/EditProfile/EditProfile";
 import LogOut from "../../components/LogOut/LogOut";
@@ -15,9 +15,14 @@ const Dashboard = () => {
   const toggleMenu = () => {
     setIsOpen((prev) => !prev);
   };
-  if ((localStorage.token = "")) {
-    navigate("/authentication");
-  }
+  useEffect(() => {
+    //There is real token verification in the backend (see services/api.ts and backend /middleware/auth.js)
+    //this is just in case someone's token expire or does not have token and go to /dashboard url.
+    const token = localStorage.getItem("token");
+    if (!token || token === "") {
+      navigate("/authentication");
+    }
+  }, [navigate]);
   return (
     <>
       <div className="burgerNav">
@@ -48,6 +53,14 @@ const Dashboard = () => {
         className={isOpen ? "burgerMenu openBurger glass" : "burgerMenu glass"}
       >
         <li
+          tabIndex={0}
+          role="button"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.currentTarget.click();
+            }
+          }}
           onClick={() => {
             setCurrentSection("");
             toggleMenu();
@@ -59,6 +72,14 @@ const Dashboard = () => {
           />
         </li>
         <li
+          tabIndex={0}
+          role="button"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.currentTarget.click();
+            }
+          }}
           onClick={() => {
             setCurrentSection("update");
             toggleMenu();
@@ -67,6 +88,14 @@ const Dashboard = () => {
           My profile
         </li>
         <li
+          tabIndex={0}
+          role="button"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.currentTarget.click();
+            }
+          }}
           onClick={() => {
             setCurrentSection("users");
             toggleMenu();
@@ -79,6 +108,7 @@ const Dashboard = () => {
           <a
             href="https://github.com/GigiJuliette/register-login-FRONT"
             target="_blank"
+            rel="noreferrer"
           >
             Documentation
           </a>
@@ -88,6 +118,14 @@ const Dashboard = () => {
           <a href="mailto:gigialiasjuliette@gmail.com">Get in touch</a>
         </li>
         <li
+          tabIndex={0}
+          role="button"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.currentTarget.click();
+            }
+          }}
           onClick={() => {
             setCurrentSection("logout");
             toggleMenu();
