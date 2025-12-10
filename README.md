@@ -4,11 +4,10 @@ React web application with user authentication, profile management and interacti
 
 ## Table of Contents
 
-- [Technologies Frontend](#technologies-frontend)
-- [Installation](#installation)
-- [Commands](#commands)
-- [Project Structure](#project-structure)
+- [Tech Stack](#Tech-Stack)
 - [Features](#features)
+- [Installation](#installation)
+- [Project Structure](#project-structure)
 - [Routes](#routes)
 - [API Services](#api-services)
 - [Context Provider](#context-provider)
@@ -17,13 +16,47 @@ React web application with user authentication, profile management and interacti
 
 - [Backend Repository](https://github.com/GigiJuliette/register-login-API) - Node.js/Express API
 
-## Technologies Frontend
+## Tech Stack
 
 - **React 19.2**
 - **TypeScript**
 - **Vite**
 - **React Router**
 - **CSS3**
+
+## Features
+
+### Authentication
+
+- **Registration**: Account creation with nickname, email and password
+- **Login**: JWT token authentication
+- **Logout**: Token removal and redirection
+
+### Profile Management
+
+- Edit nickname, name, surname, bio, email
+- Profile icon selection.
+
+## Routes
+
+- `/` - Landing page
+- `/authentication` - Login/registration page
+- `/dashboard` - Dashboard (protected)
+- `/*` - 404 page (not found routes)
+
+## API Services
+
+The [api.ts](src/services/api.ts) file exposes the following services:
+
+```typescript
+userService.register(userData); // Registration
+userService.getToken(userData); // Login
+userService.getMyUser(); // Get profile
+userService.getAllUsers(); // List users
+userService.updateProfile(data); // Update profile
+```
+
+All authenticated calls use the JWT token stored in `localStorage`.
 
 # Installation
 
@@ -73,40 +106,6 @@ src/
 ├── App.tsx             # Main component
 └── main.tsx            # Entry point
 ```
-
-## Features
-
-### Authentication
-
-- **Registration**: Account creation with nickname, email and password
-- **Login**: JWT token authentication
-- **Logout**: Token removal and redirection
-
-### Profile Management
-
-- Edit nickname, name, surname, bio, email
-- Profile icon selection.
-
-## Routes
-
-- `/` - Landing page
-- `/authentication` - Login/registration page
-- `/dashboard` - Dashboard (protected)
-- `/*` - 404 page (not found routes)
-
-## API Services
-
-The [api.ts](src/services/api.ts) file exposes the following services:
-
-```typescript
-userService.register(userData); // Registration
-userService.getToken(userData); // Login
-userService.getMyUser(); // Get profile
-userService.getAllUsers(); // List users
-userService.updateProfile(data); // Update profile
-```
-
-All authenticated calls use the JWT token stored in `localStorage`.
 
 ## Context Provider
 
