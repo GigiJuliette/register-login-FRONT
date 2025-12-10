@@ -125,4 +125,4 @@ The [UserProvider](src/context/userProvider.tsx) manages global state:
 
 ## Deployment
 
-Vercel configuration in [vercel.json](https://authclient.gi-gi.dev/authentication):
+Vercel [authclient.gi-gi.dev](https://authclient.gi-gi.dev/):
