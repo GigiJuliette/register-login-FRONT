@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { userService } from "../services/api";
+import { userService } from "../services/userServices";
 import { useNavigate } from "react-router";
 
 interface UserData {
@@ -38,7 +38,6 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     try {
       setLoading(true);
       const myUser = await userService.getMyUser();
-      console.log("i fetch");
       setUser({
         name: myUser.name,
         surname: myUser.surname,

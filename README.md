@@ -49,11 +49,11 @@ React web application with user authentication, profile management and interacti
 The [api.ts](src/services/api.ts) file exposes the following services:
 
 ```typescript
-userService.register(userData); // Registration
-userService.getToken(userData); // Login
-userService.getMyUser(); // Get profile
-userService.getAllUsers(); // List users
-userService.updateProfile(data); // Update profile
+authService.register(userData); // Registration
+authService.getToken(userData); // Login
+authService.getMyUser(); // Get profile
+authService.getAllUsers(); // List users
+authService.updateProfile(data); // Update profile
 ```
 
 All authenticated calls use the JWT token stored in `localStorage`.

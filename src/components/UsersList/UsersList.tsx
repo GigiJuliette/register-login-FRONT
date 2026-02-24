@@ -7,45 +7,14 @@ import icon3 from "../../assets/profile/iconProfile3.jpg";
 import icon4 from "../../assets/profile/iconProfile4.jpg";
 import icon5 from "../../assets/profile/iconProfile5.jpg";
 
-import { useEffect, useState } from "react";
-import { userService } from "../../services/api";
-import { useNavigate } from "react-router";
+import { userService } from "../../services/userServices";
+import { useFetch } from "../../hooks/useFetch";
+import type { User } from "../../types/User";
 
-interface UserInfos {
-  name?: string;
-  surname?: string;
-  nickname?: string;
-  bio?: string;
-  email?: string;
-  profileIcon_id?: number;
-}
 const UsersList = () => {
-  const [users, setUsers] = useState<UserInfos[]>();
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const { data, loading } = useFetch<User[]>(userService.getAllUsers);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        setLoading(true);
-        const allUsers = await userService.getAllUsers();
-        setUsers(allUsers);
-      } catch (error: any) {
-        if (
-          error.status === 401 ||
-          error.status === 403 ||
-          error.message === "No token found"
-        ) {
-          navigate("/authentication");
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchUsers();
-  }, []);
-
-  if (loading || !users) {
+  if (loading || !data) {
     return <p>Loading...</p>;
   }
   const icons = [icon0, icon1, icon2, icon3, icon4, icon5];
@@ -54,7 +23,7 @@ const UsersList = () => {
     <>
       <h1>Users List</h1>
       <ul className="usersList-container">
-        {users.map((u: UserInfos) => {
+        {data.map((u: User) => {
           const currentIcon = u.profileIcon_id ?? 0;
           return (
             <li className="userList-items glass" key={u.email}>

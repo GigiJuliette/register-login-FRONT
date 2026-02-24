@@ -1,22 +1,13 @@
-import { userService } from "../../services/api";
+import { authService } from "../../services/authServices";
 import { useState } from "react";
-
-interface UserData {
-  nickname: string;
-  email: string;
-  password: string;
-  name: string;
-  surname: string;
-  profileIcon_id: number;
-  bio: string;
-}
+import type { User } from "../../types/User";
 
 interface RegisterProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Register = ({ setActiveTab }: RegisterProps) => {
-  const [userData, setUserData] = useState<UserData>({
+  const [userData, setUserData] = useState<User>({
     nickname: "",
     email: "",
     password: "",
@@ -45,7 +36,7 @@ const Register = ({ setActiveTab }: RegisterProps) => {
     }
     try {
       setLoading(true);
-      await userService.register(userData);
+      await authService.register(userData);
       setFormStatus("register successfull!");
       setUserData({
         nickname: "",
@@ -60,79 +51,77 @@ const Register = ({ setActiveTab }: RegisterProps) => {
       setTimeout(() => {
         setActiveTab("login");
       }, 1000);
-    } catch (error) {
+    } catch (_error) {
       setFormStatus("registration failed. please try again.");
     }
   };
 
   return (
-    <>
-      <form className="authForm registerForm">
-        <div data-text="Nickname">
-          <input
-            type="text"
-            value={userData.nickname}
-            onChange={(e) => {
-              setUserData({ ...userData, nickname: e.target.value });
-              setLoading(false);
-            }}
-          />
-        </div>
-        <div data-text="Email">
-          <input
-            type="email"
-            value={userData.email}
-            onChange={(e) => {
-              setUserData({ ...userData, email: e.target.value });
-              setLoading(false);
-            }}
-          />
-        </div>
-        <div data-text="Password">
-          <input
-            type={seePassword ? "text" : "password"}
-            value={userData.password}
-            onChange={(e) => {
-              setUserData({ ...userData, password: e.target.value });
-              setLoading(false);
-            }}
-          />
-        </div>
-        <div data-text="Confirm password">
-          <input
-            type={seePassword ? "text" : "password"}
-            value={confirmPassword}
-            className="loggin-psw"
-            onChange={(e) => {
-              setUncorrect(false);
-              setConfirmPassword(e.target.value);
-              setLoading(false);
-            }}
-          />
-        </div>
-        <button
-          type="button"
-          className="toggleHide"
-          onClick={() => {
-            setSeePassword((prev) => !prev);
+    <form className="authForm registerForm">
+      <div data-text="Nickname">
+        <input
+          type="text"
+          value={userData.nickname}
+          onChange={(e) => {
+            setUserData({ ...userData, nickname: e.target.value });
+            setLoading(false);
           }}
-        >
-          <em>{seePassword ? "hide passwords" : "show passwords"}</em>
-        </button>
-        <button
-          className={uncorrect ? "uncorrectLoggin" : ""}
-          disabled={loading}
-          type="submit"
-          onClick={(e) => {
-            e.preventDefault();
-            createUser();
+        />
+      </div>
+      <div data-text="Email">
+        <input
+          type="email"
+          value={userData.email}
+          onChange={(e) => {
+            setUserData({ ...userData, email: e.target.value });
+            setLoading(false);
           }}
-        >
-          Register
-        </button>
-        <em className="authStatus">{formStatus}</em>
-      </form>
-    </>
+        />
+      </div>
+      <div data-text="Password">
+        <input
+          type={seePassword ? "text" : "password"}
+          value={userData.password}
+          onChange={(e) => {
+            setUserData({ ...userData, password: e.target.value });
+            setLoading(false);
+          }}
+        />
+      </div>
+      <div data-text="Confirm password">
+        <input
+          type={seePassword ? "text" : "password"}
+          value={confirmPassword}
+          className="loggin-psw"
+          onChange={(e) => {
+            setUncorrect(false);
+            setConfirmPassword(e.target.value);
+            setLoading(false);
+          }}
+        />
+      </div>
+      <button
+        type="button"
+        className="toggleHide"
+        onClick={() => {
+          setSeePassword((prev) => !prev);
+        }}
+      >
+        <em>{seePassword ? "hide passwords" : "show passwords"}</em>
+      </button>
+      <button
+        className={uncorrect ? "uncorrectLoggin" : ""}
+        disabled={loading}
+        type="submit"
+        onClick={(e) => {
+          e.preventDefault();
+          createUser();
+        }}
+      >
+        Register
+      </button>
+      <em className="authStatus">{formStatus}</em>
+    </form>
   );
 };
 export default Register;

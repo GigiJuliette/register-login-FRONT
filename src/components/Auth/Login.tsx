@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { userService } from "../../services/api";
+import { authService } from "../../services/authServices";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../context/userProvider";
 
@@ -31,7 +31,7 @@ const LogIn = () => {
     }
     try {
       setLoading(true);
-      const response = await userService.getToken(userData);
+      const response = await authService.getToken(userData);
       localStorage.setItem("token", response.token);
       await refreshUser();
       setUserData({
@@ -50,53 +50,51 @@ const LogIn = () => {
   };
 
   return (
-    <>
-      <form className="authForm loginForm">
-        <h2>{formStatus}</h2>
+    <form className="authForm loginForm">
+      <h2>{formStatus}</h2>
+      <input
+        type="email"
+        placeholder="Email"
+        value={userData.email}
+        onChange={(e) => {
+          setUserData({ ...userData, email: e.target.value });
+          setUncorrect(false);
+          setLoading(false);
+        }}
+      />
+      <div className="loggin-psw">
         <input
-          type="email"
-          placeholder="Email"
-          value={userData.email}
+          type={seePassword ? "text" : "password"}
+          placeholder="Password"
+          value={userData.password}
           onChange={(e) => {
-            setUserData({ ...userData, email: e.target.value });
+            setUserData({ ...userData, password: e.target.value });
             setUncorrect(false);
             setLoading(false);
           }}
         />
-        <div className="loggin-psw">
-          <input
-            type={seePassword ? "text" : "password"}
-            placeholder="Password"
-            value={userData.password}
-            onChange={(e) => {
-              setUserData({ ...userData, password: e.target.value });
-              setUncorrect(false);
-              setLoading(false);
-            }}
-          />
-          <button
-            type="button"
-            className="toggleHide login-toggleHide"
-            onClick={() => {
-              setSeePassword((prev) => !prev);
-            }}
-          >
-            <em>{seePassword ? "hide" : "show"}</em>
-          </button>
-        </div>
         <button
-          disabled={loading}
-          type="submit"
-          className={uncorrect ? "uncorrectLoggin" : ""}
-          onClick={(e) => {
-            e.preventDefault();
-            loginHandler();
+          type="button"
+          className="toggleHide login-toggleHide"
+          onClick={() => {
+            setSeePassword((prev) => !prev);
           }}
         >
-          Log In
+          <em>{seePassword ? "hide" : "show"}</em>
         </button>
-      </form>
-    </>
+      </div>
+      <button
+        disabled={loading}
+        type="submit"
+        className={uncorrect ? "uncorrectLoggin" : ""}
+        onClick={(e) => {
+          e.preventDefault();
+          loginHandler();
+        }}
+      >
+        Log In
+      </button>
+    </form>
   );
 };
 export default LogIn;

@@ -9,6 +9,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import ErrorPage from "./pages/Error/ErrorPage.tsx";
 import Landing from "./pages/Landing/Landing.tsx";
+import Gantt from "./pages/gantt/Gantt.tsx";
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -25,7 +26,10 @@ const router = createBrowserRouter([
         path: "/authentication",
         element: <AuthPage />,
       },
-
+      {
+        path: "/gantt",
+        element: <Gantt />,
+      },
       {
         path: "*",
         element: <ErrorPage />,
@@ -36,5 +40,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );
