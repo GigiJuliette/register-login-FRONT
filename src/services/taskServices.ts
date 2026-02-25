@@ -14,12 +14,27 @@ export const taskService = {
       method: "POST",
       body: JSON.stringify(payload),
     });
+    const resjson = await response.json();
+    console.log("task.id (creatTask func) : ", resjson);
     return handleResponse(response);
   },
-  updateTask: async (task: Partial<ITask>) => {
+  updateTask: async (task: ITask) => {
+    const payload = {
+      ...task,
+      parent: task.parent === 0 ? undefined : task.parent,
+    };
     const response = await authFetch(`${VITE_API_URL}api/task`, {
       method: "PUT",
-      body: JSON.stringify(task),
+      body: JSON.stringify(payload),
+    });
+    return handleResponse(response);
+  },
+  deleteTask: async (task: ITask) => {
+    const payload = task._id;
+    console.log(task, "hello wirld");
+    const response = await authFetch(`${VITE_API_URL}api/task`, {
+      method: "DELETE",
+      body: JSON.stringify(payload),
     });
     return handleResponse(response);
   },

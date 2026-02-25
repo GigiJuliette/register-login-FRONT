@@ -17,11 +17,17 @@ const Planner = () => {
 
   useEffect(() => {
     if (!api) return;
+
     api.on("update-task", async ({ task }) => {
       await taskService.updateTask(task);
     });
+
     api.on("add-task", async ({ task }) => {
       await taskService.createTask(task);
+    });
+
+    api.on("delete-task", async (task) => {
+      await taskService.deleteTask(task);
     });
   }, [api]);
 
