@@ -6,16 +6,25 @@ const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 export const taskService = {
   createTask: async (task: Partial<ITask>) => {
+    const now = new Date();
+    const defaultEnd = new Date(now);
+    defaultEnd.setDate(defaultEnd.getDate() + 1);
+
     const payload = {
       ...task,
-      parent: task.parent === 0 ? undefined : task.parent,
+      parent: undefined,
+      text: "NOUVELLE TACHE",
+      start: now,
+      end: defaultEnd,
+      duration: 1,
+      progress: 0,
+      type: "task",
     };
     const response = await authFetch(`${VITE_API_URL}api/task`, {
       method: "POST",
       body: JSON.stringify(payload),
     });
-    const resjson = await response.json();
-    console.log("task.id (creatTask func) : ", resjson);
+
     return handleResponse(response);
   },
   updateTask: async (task: ITask) => {
@@ -29,12 +38,9 @@ export const taskService = {
     });
     return handleResponse(response);
   },
-  deleteTask: async (task: ITask) => {
-    const payload = task._id;
-    console.log(task, "hello wirld");
-    const response = await authFetch(`${VITE_API_URL}api/task`, {
+  deleteTask: async (id: number | string) => {
+    const response = await authFetch(`${VITE_API_URL}api/task/${id}`, {
       method: "DELETE",
-      body: JSON.stringify(payload),
     });
     return handleResponse(response);
   },

@@ -5,7 +5,8 @@ import EditProfile from "../../components/EditProfile/EditProfile";
 import LogOut from "../../components/LogOut/LogOut";
 import { UserContext } from "../../context/userProvider";
 import IconProfile from "../../components/IconProfile/IconProfile";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
+import Planner from "../Planner/Planner";
 const Dashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentSection, setCurrentSection] = useState("");
@@ -102,6 +103,9 @@ const Dashboard = () => {
           }}
         >
           Users list
+        </li>
+        <li>
+          <Link to="/gantt">Gantt</Link>
         </li>
         <div className="navLine" />
         <li>

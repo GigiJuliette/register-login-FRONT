@@ -29,5 +29,5 @@ export function useFetch<Data>(fetchFn: () => Promise<Data>) {
     execute();
   }, []);
 
-  return { data, loading, refetch: execute };
+  return { data, loading };
 }

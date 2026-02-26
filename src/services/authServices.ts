@@ -11,7 +11,7 @@ export const authService = {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userData),
     });
-    console.log(response);
+
     return handleResponse(response);
   },
 

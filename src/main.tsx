@@ -1,15 +1,15 @@
 import "./index.css";
 
-import App from "./App.tsx";
-import AuthPage from "./pages/AuthPage/AuthPage.tsx";
-import Dashboard from "./pages/Dashboard.tsx/Dashboard.tsx";
-
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
+
+import App from "./App.tsx";
+import AuthPage from "./pages/AuthPage/AuthPage.tsx";
+import Dashboard from "./pages/Dashboard.tsx/Dashboard.tsx";
 import ErrorPage from "./pages/Error/ErrorPage.tsx";
 import Landing from "./pages/Landing/Landing.tsx";
-import Gantt from "./pages/gantt/Gantt.tsx";
+import Planner from "./pages/Planner/Planner.tsx";
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/gantt",
-        element: <Gantt />,
+        element: <Planner />,
       },
       {
         path: "*",

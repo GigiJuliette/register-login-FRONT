@@ -60,3 +60,13 @@ button[type="submit"]:hover {
 button:disabled {
   cursor: not-allowed;
 }
+
+.gantt_container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.wx-TSCaXsGV.wx-cell.wx-rHj6070p.wx-text-center.wx-action
+  .wx-9DAESAHW.wx-action-icon.wxi-plus {
+  display: none;
+}
